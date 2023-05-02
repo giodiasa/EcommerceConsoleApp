@@ -166,7 +166,7 @@ void GetOrdersReport()
 
 void ExportOrdersReport(string path)
 {
-    path += "\\report.csv";
+    path += "\\report"+DateTime.Now.ToString("yyyyMMdd_HHmmss") +".csv";
     var stream = new MemoryStream();
 
     ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -177,7 +177,8 @@ void ExportOrdersReport(string path)
         Stream writeStream = File.Create(path); 
         package.SaveAs(writeStream); 
         writeStream.Close();
-    }    
+    }
+    Console.WriteLine("Orders report is ready");
 }
 
 while (true)
